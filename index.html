@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Negociação de Dívidas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Calculadora de Negociação de Dívidas</h1>
+      <p>Compare um acordo à vista com um acordo parcelado e descubra qual sai mais barato.</p>
+    </header>
+
+    <form id="formulario">
+      <fieldset>
+        <legend>Dívida</legend>
+        <label>Valor total da dívida (R$)
+          <input id="divida" type="number" step="0.01" min="0" value="10000" required>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Proposta à vista</legend>
+        <label>Desconto oferecido (%)
+          <input id="descontoAVista" type="number" step="0.1" min="0" max="100" value="70">
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Proposta parcelada</legend>
+        <label>Desconto oferecido (%)
+          <input id="descontoParcelado" type="number" step="0.1" min="0" max="100" value="50">
+        </label>
+        <label>Entrada (R$)
+          <input id="entrada" type="number" step="0.01" min="0" value="500">
+        </label>
+        <label>Juros ao mês (%)
+          <input id="juros" type="number" step="0.01" min="0" value="1.99">
+        </label>
+        <label>Número de parcelas
+          <input id="parcelas" type="number" step="1" min="1" value="12">
+        </label>
+      </fieldset>
+
+      <button type="submit">Simular</button>
+      <p id="erro" class="erro" hidden></p>
+    </form>
+
+    <section id="resultado" hidden>
+      <div class="cartoes">
+        <article class="cartao">
+          <h2>À vista</h2>
+          <p class="destaque" id="avistaValor"></p>
+          <p>Economia: <strong id="avistaEconomia"></strong></p>
+        </article>
+        <article class="cartao">
+          <h2>Parcelado</h2>
+          <p class="destaque" id="parcValor"></p>
+          <p>Total pago: <strong id="parcTotal"></strong></p>
+          <p>Juros pagos: <strong id="parcJuros"></strong></p>
+          <p>Economia: <strong id="parcEconomia"></strong></p>
+        </article>
+      </div>
+      <p class="veredito" id="veredito"></p>
+
+      <details>
+        <summary>Ver tabela de parcelas (Price)</summary>
+        <div class="tabela-rolagem">
+          <table>
+            <thead>
+              <tr><th>Mês</th><th>Parcela</th><th>Juros</th><th>Amortização</th><th>Saldo</th></tr>
+            </thead>
+            <tbody id="tabelaCorpo"></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <footer>Projeto de estudo — os valores são simulações e não substituem a proposta oficial do credor.</footer>
+  </main>
+
+  <script src="calculos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
